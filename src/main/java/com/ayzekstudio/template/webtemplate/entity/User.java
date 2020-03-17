@@ -1,17 +1,18 @@
 package com.ayzekstudio.template.webtemplate.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name="user")
+@Table(name="user", catalog = "ayzek_webtemplate")
 public class User {
 
 	// define fields
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user")
-	private int user;
+	@Column(name="username")
+	private String username;
 
 	@Column(name="passwd")
 	private String passwd;
@@ -27,31 +28,44 @@ public class User {
 
 	@Column(name="email")
 	private String email;
-	
-		
+
+	@Column(name="enabled")
+	private boolean enabled;
+
+	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
 	// define constructors
 	public User() {
 		
 	}
 
-	public User(int user, String passwd, String firstName, String lastName, String phone, String email) {
-		this.user = user;
+	public User(String username, String passwd, String firstName, String lastName, String phone, String email, boolean enabled) {
+		this.username = username;
 		this.passwd = passwd;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
 		this.email = email;
+		this.enabled = enabled;
 	}
 
-	// define getter/setter
-
-
-	public int getUser() {
-		return user;
+	public User(String username, String passwd, String firstName, String lastName, String phone, String email, boolean enabled, Set<UserRole> userRole) {
+		this.username = username;
+		this.passwd = passwd;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.email = email;
+		this.enabled = enabled;
+		this.userRole = userRole;
 	}
 
-	public void setUser(int user) {
-		this.user = user;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String user) {
+		this.username = user;
 	}
 
 	public String getPasswd() {
@@ -94,34 +108,51 @@ public class User {
 		this.email = email;
 	}
 
-	// define equals, toString and hashCode
+	public Set<UserRole> getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		User user1 = (User) o;
-		return user == user1.user &&
-				Objects.equals(passwd, user1.passwd) &&
-				Objects.equals(firstName, user1.firstName) &&
-				Objects.equals(lastName, user1.lastName) &&
-				Objects.equals(phone, user1.phone) &&
-				Objects.equals(email, user1.email);
+		User user = (User) o;
+		return Objects.equals(username, user.username) &&
+				Objects.equals(passwd, user.passwd) &&
+				Objects.equals(firstName, user.firstName) &&
+				Objects.equals(lastName, user.lastName) &&
+				Objects.equals(phone, user.phone) &&
+				Objects.equals(email, user.email) &&
+				Objects.equals(userRole, user.userRole);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(user, passwd, firstName, lastName, phone, email);
+		return Objects.hash(username, passwd, firstName, lastName, phone, email, userRole);
 	}
 
 	@Override
 	public String toString() {
 		return "User{" +
-				"user=" + user +
+				"username='" + username + '\'' +
 				", passwd='" + passwd + '\'' +
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", phone='" + phone + '\'' +
 				", email='" + email + '\'' +
+				", userRole=" + userRole +
 				'}';
 	}
 }
