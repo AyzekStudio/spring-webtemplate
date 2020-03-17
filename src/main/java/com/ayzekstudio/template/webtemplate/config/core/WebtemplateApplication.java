@@ -1,4 +1,4 @@
-package com.ayzekstudio.template.webtemplate;
+package com.ayzekstudio.template.webtemplate.config.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
