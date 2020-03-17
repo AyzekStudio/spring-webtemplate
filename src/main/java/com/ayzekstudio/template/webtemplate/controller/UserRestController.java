@@ -1,4 +1,4 @@
-package com.ayzekstudio.template.webtemplate.rest;
+package com.ayzekstudio.template.webtemplate.controller;
 
 import com.ayzekstudio.template.webtemplate.dao.UserDAO;
 import com.ayzekstudio.template.webtemplate.entity.User;
@@ -16,7 +16,6 @@ public class UserRestController {
 	@Autowired
 	private UserDAO userDao;
 
-	@Autowired
 	public UserRestController() {
 	}
 	
