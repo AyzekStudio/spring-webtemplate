@@ -1,0 +1,9 @@
+#
+# JDBC properties
+#
+spring.datasource.url=jdbc:mysql://localhost:3306/webtemplate?useSSL=false&serverTimezone=UTC
+spring.datasource.username=
+spring.datasource.password=
+
+# Spring Boot
+server.port=
