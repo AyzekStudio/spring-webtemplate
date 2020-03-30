@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ayzek Web Template</title>
+    <!-- reference CSS file -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}">Header</div>
+<div class="container">
+    <div class="text-center">
+
+        <p th:text="'Time on the server is ' + ${theDate}" />
+        <a href="hello">Hello</a><br>
+        <a href="/admin/user/list">List users</a><br>
+
+        <p>
+            <a id="signup" class="btn btn-success btn-lg">Sign up</a>
+        </p>
+    </div>
+    <div th:insert="~{fragments/footer :: footer}">&copy; 2020 Ayzek Studio</div>
+</div>
+
+</body>
+</html>

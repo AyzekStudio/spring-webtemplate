@@ -25,7 +25,7 @@
         <!--Table body-->
         <tbody>
         <tr th:each="tmpUser : ${userList}">
-            <td scope="row" th:text="${tmpUser.user}"/>
+            <td scope="row" th:text="${tmpUser.username}"/>
             <td th:text="${tmpUser.firstName}"/>
             <td th:text="${tmpUser.lastName}"/>
             <td th:text="${tmpUser.phone}"/>

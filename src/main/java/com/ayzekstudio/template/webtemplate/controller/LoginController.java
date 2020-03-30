@@ -15,7 +15,7 @@ public class LoginController {
     @GetMapping("/")
     public ModelAndView homeMapping(){
 
-        ModelAndView theModel = new ModelAndView("index");
+        ModelAndView theModel = new ModelAndView("home/index");
         theModel.addObject("theDate", new java.util.Date());
 
         return theModel;

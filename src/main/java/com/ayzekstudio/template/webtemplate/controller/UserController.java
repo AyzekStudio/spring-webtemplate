@@ -20,10 +20,9 @@ public class UserController {
 	public UserController() {
 	}
 	
-	// expose "/user" and return list of employees
-	@GetMapping("/list")
-	public ModelAndView findAll() {
-		ModelAndView theModel = new ModelAndView("user-list");
+	@GetMapping("/")
+	public ModelAndView listAllUsers() {
+		ModelAndView theModel = new ModelAndView("admin/user/user-list");
 
 		List<User> userList = userDao.findAll();
 		theModel.addObject("userList", userList);
