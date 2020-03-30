@@ -1,20 +1,20 @@
 package com.ayzekstudio.template.webtemplate.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name="user", catalog = "ayzek_webtemplate")
 public class User {
 
 	// define fields
 	@Id
-	@Column(name="username")
 	private String username;
 
-	@Column(name="passwd")
 	private String passwd;
 
 	@Column(name="first_name")
@@ -23,16 +23,14 @@ public class User {
 	@Column(name="last_name")
 	private String lastName;
 
-	@Column(name="phone")
 	private String phone;
 
-	@Column(name="email")
 	private String email;
 
-	@Column(name="enabled")
 	private boolean enabled;
 
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
 	// define constructors
 	public User() {
@@ -49,7 +47,7 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public User(String username, String passwd, String firstName, String lastName, String phone, String email, boolean enabled, Set<UserRole> userRole) {
+	public User(String username, String passwd, String firstName, String lastName, String phone, String email, boolean enabled, Set<UserRole> userRoles) {
 		this.username = username;
 		this.passwd = passwd;
 		this.firstName = firstName;
@@ -57,104 +55,13 @@ public class User {
 		this.phone = phone;
 		this.email = email;
 		this.enabled = enabled;
-		this.userRole = userRole;
+		this.userRoles = userRoles;
 	}
 
-	public String getUsername() {
-		return username;
+	public void addUserRole(UserRole userRole) {
+		this.userRoles.add(userRole);
 	}
 
-	public void setUsername(String user) {
-		this.username = user;
-	}
-
-	public String getPasswd() {
-		return passwd;
-	}
-
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Set<UserRole> getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		User user = (User) o;
-		return Objects.equals(username, user.username) &&
-				Objects.equals(passwd, user.passwd) &&
-				Objects.equals(firstName, user.firstName) &&
-				Objects.equals(lastName, user.lastName) &&
-				Objects.equals(phone, user.phone) &&
-				Objects.equals(email, user.email) &&
-				Objects.equals(userRole, user.userRole);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(username, passwd, firstName, lastName, phone, email, userRole);
-	}
-
-	@Override
-	public String toString() {
-		return "User{" +
-				"username='" + username + '\'' +
-				", passwd='" + passwd + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", phone='" + phone + '\'' +
-				", email='" + email + '\'' +
-				", userRole=" + userRole +
-				'}';
-	}
 }
 
 
