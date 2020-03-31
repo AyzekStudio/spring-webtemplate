@@ -1,9 +1,8 @@
 package com.ayzekstudio.template.webtemplate.config.core;
 
+import com.ayzekstudio.template.webtemplate.WebtemplateApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.core.Ordered;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 public class ServletInitializer extends SpringBootServletInitializer {
 
