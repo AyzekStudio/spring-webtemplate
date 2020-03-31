@@ -19,6 +19,9 @@
             <th>Last Name</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <!--Table head-->
@@ -30,6 +33,9 @@
             <td th:text="${tmpUser.lastName}"/>
             <td th:text="${tmpUser.phone}"/>
             <td th:text="${tmpUser.email}"/>
+            <td><a th:href="@{/admin/user/{id}(id=${tmpUser.username})}" class="btn btn-success"><i class="fas fa-street-view"></i>View</a></td>
+            <td><a th:href="@{/admin/user/{id}/edit(id=${tmpUser.username})}" class="btn btn-secondary"><i class="fas fa-edit"></i>Edit</a></td>
+            <td><a th:href="@{/admin/user/{id}/delete(id=${tmpUser.username})}" class="btn btn-danger"><i class="fas fa-user-slash"></i>Delete</a></td>
         </tr>
         </tbody>
         <!--Table body-->

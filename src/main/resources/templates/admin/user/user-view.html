@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ayzek Web Template</title>
+    <!-- reference CSS file -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+    <link href="https://formden.com/static/cdn/bootstrap-iso.css" rel="stylesheet" />
+
+    <!-- Inline CSS based on choices in "Settings" tab -->
+    <style>
+        .bootstrap-iso .formden_header h2,
+        .bootstrap-iso .formden_header p,
+        .bootstrap-iso form {
+            font-family: Arial, Helvetica, sans-serif;
+            color: black
+        }
+
+        .bootstrap-iso form button,
+        .bootstrap-iso form button:hover {
+            color: white !important;
+        }
+
+        .asteriskField {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+    <div class="bootstrap-iso">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form method="post">
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="username">
+                                User
+                                <span class="asteriskField">
+                                        *
+                                    </span>
+                            </label>
+                            <input class="form-control" id="username" name="username" placeholder="Username"
+                                   type="text" th:value="${user.username}" th:disabled="${disabled}"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="firstName">
+                                First Name
+                                <span class="asteriskField">
+                                        *
+                                    </span>
+                            </label>
+                            <input class="form-control" id="firstName" name="firstName" placeholder="First Name"
+                                   type="text" th:value="${user.firstName}" th:disabled="${disabled}"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="lastName">
+                                Last Name
+                                <span class="asteriskField">
+                                        *
+                                    </span>
+                            </label>
+                            <input class="form-control" id="lastName" name="lastName" placeholder="Last Name"
+                                   type="text" th:value="${user.lastName}" th:disabled="${disabled}"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="email">
+                                Email
+                                <span class="asteriskField">
+                                        *
+                                    </span>
+                            </label>
+                            <input class="form-control" id="email" name="email" placeholder="Email address"
+                                   type="text" th:value="${user.email}" th:disabled="${disabled}"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label " for="phone">
+                                Phone
+                            </label>
+                            <input class="form-control" id="phone" name="phone" placeholder="Phone" type="text"
+                                   th:value="${user.phone}" th:disabled="${disabled}"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="passwd">
+                                Password
+                                <span class="asteriskField">
+                                        *
+                                    </span>
+                            </label>
+                            <input class="form-control" id="passwd" name="passwd" placeholder="Password"
+                                   type="text"  th:disabled="${disabled}"/>
+                        </div>
+                        <div class="form-group ">
+                            <div class=" ">
+                                <div class="checkbox">
+                                    <label class="checkbox">
+                                        <input name="enabled" type="checkbox" value="Enabled"
+                                               th:value="${user.enabled}? #{bool.true} : #{bool.false}" th:disabled="${disabled}"/>
+                                        Enabled
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <span th:if="${!disabled}">
+                            <div class="form-group">
+                                <div>
+                                    <button class="btn btn-primary " name="submit" type="submit">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>
