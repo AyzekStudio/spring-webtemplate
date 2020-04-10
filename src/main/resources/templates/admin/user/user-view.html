@@ -4,33 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Ayzek Web Template</title>
-    <!-- reference CSS file -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-    <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
-    <link href="https://formden.com/static/cdn/bootstrap-iso.css" rel="stylesheet" />
-
-    <!-- Inline CSS based on choices in "Settings" tab -->
-    <style>
-        .bootstrap-iso .formden_header h2,
-        .bootstrap-iso .formden_header p,
-        .bootstrap-iso form {
-            font-family: Arial, Helvetica, sans-serif;
-            color: black
-        }
-
-        .bootstrap-iso form button,
-        .bootstrap-iso form button:hover {
-            color: white !important;
-        }
-
-        .asteriskField {
-            color: red;
-        }
-    </style>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
+    <link rel="stylesheet" media="screen" th:href="@{/css/tables.css}"/>
 </head>
-
 <body>
 <div class="container">
+    <header th:insert="fragments/template.html :: header"> </header>
+
     <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
     <div class="bootstrap-iso">
         <div class="container-fluid">
@@ -105,22 +86,21 @@
                                 </div>
                             </div>
                         </div>
-                        <span th:if="${!disabled}">
                             <div class="form-group">
                                 <div>
-                                    <button class="btn btn-primary " name="submit" type="submit">
-                                        Save
-                                    </button>
+                                    <button class="btn btn-warning" type="cancel" onclick="window.location='@{/admin/user/';return false;">Cancel</button>
+                                    <span th:if="${!disabled}">
+                                        <button class="btn btn-primary " name="submit" type="submit">Save</button>
+                                    </span>
                                 </div>
                             </div>
-                        </span>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <div th:replace="fragments/template.html :: footer"></div>
 </div>
 </body>
-
 </html>

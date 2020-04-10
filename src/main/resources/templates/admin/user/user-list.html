@@ -3,44 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Ayzek Web Template</title>
-    <!-- reference CSS file -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <!--/*/ <th:block th:include="fragments/template.html :: headerfiles">
+        </th:block> /*/-->
 </head>
 <body>
 <div class="container">
-    <h1>User list</h1>
-    <!--Table-->
-    <table id="tablePreview" class="table table-striped">
-        <!--Table head-->
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <!--Table head-->
-        <!--Table body-->
-        <tbody>
-        <tr th:each="tmpUser : ${userList}">
-            <td scope="row" th:text="${tmpUser.username}"/>
-            <td th:text="${tmpUser.firstName}"/>
-            <td th:text="${tmpUser.lastName}"/>
-            <td th:text="${tmpUser.phone}"/>
-            <td th:text="${tmpUser.email}"/>
-            <td><a th:href="@{/admin/user/{id}(id=${tmpUser.username})}" class="btn btn-success"><i class="fas fa-street-view"></i>View</a></td>
-            <td><a th:href="@{/admin/user/{id}/edit(id=${tmpUser.username})}" class="btn btn-secondary"><i class="fas fa-edit"></i>Edit</a></td>
-            <td><a th:href="@{/admin/user/{id}/delete(id=${tmpUser.username})}" class="btn btn-danger"><i class="fas fa-user-slash"></i>Delete</a></td>
-        </tr>
-        </tbody>
-        <!--Table body-->
-    </table>
-    <!--Table-->
+    <header th:insert="fragments/template.html :: header"> </header>
+
+    <div class="row">
+        <div class="col-md-8"><h1>User list</h1></div>
+        <div class="col-md-4"><div class="float-right"><a th:href="@{/admin/user/create}" class="btn btn-success"><i class="fas fa-street-view"></i>View</a></div></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!--Table-->
+            <table id="tablePreview" class="table table-striped">
+                <!--Table head-->
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <!--Table head-->
+                <!--Table body-->
+                <tbody>
+                <tr th:each="tmpUser : ${userList}">
+                    <td scope="row" th:text="${tmpUser.username}"/>
+                    <td th:text="${tmpUser.firstName}"/>
+                    <td th:text="${tmpUser.lastName}"/>
+                    <td th:text="${tmpUser.phone}"/>
+                    <td th:text="${tmpUser.email}"/>
+                    <td><a th:href="@{/admin/user/{id}(id=${tmpUser.username})}" class="btn btn-info"><i class="fas fa-street-view"></i>View</a></td>
+                    <td><a th:href="@{/admin/user/{id}/edit(id=${tmpUser.username})}" class="btn btn-secondary"><i class="fas fa-edit"></i>Edit</a></td>
+                    <td><a th:href="@{/admin/user/{id}/delete(id=${tmpUser.username})}" class="btn btn-danger"><i class="fas fa-user-slash"></i>Delete</a></td>
+                </tr>
+                </tbody>
+                <!--Table body-->
+            </table>
+            <!--Table-->
+        </div>
+    </div>
+
+    <div th:replace="fragments/template.html :: footer"></div>
 </div>
 </body>
 </html>

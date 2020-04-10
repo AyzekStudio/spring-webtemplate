@@ -35,14 +35,10 @@ public class UserController {
 		return theModel;
 	}
 
-	@PostMapping("/create")
-	public ModelAndView saveNewUser(@PathVariable String username){
-		ModelAndView theModel = new ModelAndView("admin/user/user-view");
-
-		User user = userRepository.findByUsername(username);
-		theModel.addObject("user", user);
-
-		return theModel;
+	@PostMapping(value = "/create", consumes = "application/json")
+	public RedirectView saveNewUser(@RequestBody User user){
+		userRepository.save(user);
+		return new RedirectView("admin/user/user-list");
 	}
 
 	@GetMapping("/{username}")
@@ -66,14 +62,10 @@ public class UserController {
 		return theModel;
 	}
 
-	@PostMapping("/{username}/edit")
-	public ModelAndView updateUser(@PathVariable String username){
-		ModelAndView theModel = new ModelAndView("admin/user/user-view");
-
-		User user = userRepository.findByUsername(username);
-		theModel.addObject("user", user);
-
-		return theModel;
+	@PostMapping(value = "/{username}/edit", consumes = "application/json")
+	public RedirectView updateUser(@RequestBody User user){
+		userRepository.save(user);
+		return new RedirectView("admin/user/user-list");
 	}
 
 	@GetMapping("/{username}/delete")
